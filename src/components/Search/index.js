@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import { GoSearch } from 'react-icons/go';
 import { IoMdClose } from 'react-icons/io';
+import styled from 'styled-components';
+import useInputFocus from '../../hooks/useInputFocus';
 
 const SearchInput = styled.input`
   height: 24px;
@@ -69,7 +70,7 @@ const Sidebar = styled.section`
 function Search({ initialData }) {
   const [searchList, setSearchList] = useState(initialData);
   const [showSideBar, setShowSideBar] = useState(false);
-  // const { ref } = useInput();
+  const { ref } = useInputFocus(showSideBar);
 
   return (
     <>
@@ -79,7 +80,7 @@ function Search({ initialData }) {
         </SearchIcon>
       ) : (
         <Sidebar>
-          <SearchInput />
+          <SearchInput ref={ref} placeholder='Search country to view details' />
           <IoMdClose onClick={() => setShowSideBar(() => false)} />
         </Sidebar>
       )}
