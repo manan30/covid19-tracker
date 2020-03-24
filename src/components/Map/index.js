@@ -8,11 +8,6 @@ import {
 import { getAll, getAllCountries } from '../../api';
 import { GEO_URL, colorScale } from '../../utils/Constants';
 
-function getColor(country) {
-  const color = colorScale(country.cases);
-  return color;
-}
-
 function WorldMap() {
   const [covid19Data, setCovid19Data] = useState({});
   const [countriesData, setCountriesData] = useState([]);
@@ -31,6 +26,12 @@ function WorldMap() {
     })();
   }, []);
 
+  const getColor = count => {
+    const scale = colorScale(covid19Data.cases);
+    const color = scale(count);
+    return color;
+  };
+
   return (
     <ComposableMap className='main-map' projection='geoMercator'>
       {/* <Sphere stroke='#E4E5E6' strokeWidth={0.5} /> */}
@@ -47,7 +48,7 @@ function WorldMap() {
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
-                  fill={foundCountry ? getColor(foundCountry) : '#F5F4F6'}
+                  fill={foundCountry ? getColor(foundCountry.cases) : '#F5F4F6'}
                 />
               );
             })

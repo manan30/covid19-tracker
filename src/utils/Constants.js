@@ -3,9 +3,10 @@ import { scaleLinear } from 'd3-scale';
 export const GEO_URL =
   'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json';
 
-export const colorScale = scaleLinear()
-  .domain([])
-  .range(['#ffedea', '#ff5233']);
+export const colorScale = range =>
+  scaleLinear()
+    .domain([0, range])
+    .range(['#ffedea', '#ff5233']);
 
 const missingCountries = [
   'USA',
