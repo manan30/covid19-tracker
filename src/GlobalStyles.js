@@ -15,6 +15,9 @@ export default createGlobalStyle`
     vertical-align: middle;
   }
 
+  a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+  }
 
   #root {
     height: 100%;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ReactTooltip from 'react-tooltip';
 import { getAll, getAllCountries } from '../../api';
 import WorldMap from '../../components/Map';
+import Search from '../../components/Search';
 import GlobalStats from '../../components/WorldStats';
 
 function Main() {
@@ -25,6 +26,7 @@ function Main() {
 
   return (
     <>
+      <Search initialData={countriesData.map(country => country.country)} />
       <GlobalStats stats={covid19Data} />
       <WorldMap
         setTooltipContent={setTooltipContent}
