@@ -8,14 +8,16 @@ function App() {
   return (
     <div className='App'>
       <WorldMap setTooltipContent={setTooltipContent} />
-      <ReactTooltip>
-        <h4>{tooltipContent.name && tooltipContent.name}</h4>
-        {tooltipContent.cases && <h5>Cases: {tooltipContent.cases}</h5>}
-        {tooltipContent.recovered && (
-          <h5>Recovered: {tooltipContent.recovered}</h5>
-        )}
-        {tooltipContent.deaths && <h5>Deaths: {tooltipContent.deaths}</h5>}
-      </ReactTooltip>
+      {tooltipContent.length !== 0 && (
+        <ReactTooltip>
+          <h4>{tooltipContent.name && tooltipContent.name}</h4>
+          {tooltipContent.cases && <h5>Cases: {tooltipContent.cases}</h5>}
+          {tooltipContent.recovered && (
+            <h5>Recovered: {tooltipContent.recovered}</h5>
+          )}
+          {tooltipContent.deaths && <h5>Deaths: {tooltipContent.deaths}</h5>}
+        </ReactTooltip>
+      )}
     </div>
   );
 }
