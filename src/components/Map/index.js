@@ -1,33 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   ComposableMap,
   Geographies,
   Geography,
   ZoomableGroup
 } from 'react-simple-maps';
-import { getAll, getAllCountries } from '../../api';
-import { GEO_URL, colorScale } from '../../utils/Constants';
+import { colorScale, GEO_URL } from '../../utils/Constants';
 
-function WorldMap({ setTooltipContent }) {
-  const [covid19Data, setCovid19Data] = useState({});
-  const [countriesData, setCountriesData] = useState([]);
-
-  useEffect(() => {
-    (async function getData() {
-      const data = await getAll();
-      setCovid19Data(() => data);
-    })();
-  }, []);
-
-  useEffect(() => {
-    (async function getAllCountriesData() {
-      const data = await getAllCountries();
-      setCountriesData(() => data);
-    })();
-  }, []);
-
+function WorldMap({ setTooltipContent, covid19DataScale, countriesData }) {
   const getColor = count => {
-    const scale = colorScale(covid19Data.cases);
+    const scale = colorScale(covid19DataScale);
     const color = scale(count);
     return color;
   };
@@ -54,7 +37,6 @@ function WorldMap({ setTooltipContent }) {
                       countryData,
                       properties: { NAME }
                     } = newGeoObject;
-                    console.log(countryData, NAME);
                     if (countryData) {
                       setTooltipContent({
                         name: NAME,
@@ -88,5 +70,17 @@ function WorldMap({ setTooltipContent }) {
     </ComposableMap>
   );
 }
+
+WorldMap.propTypes = {
+  setTooltipContent: PropTypes.func,
+  covid19DataScale: PropTypes.number,
+  countriesData: PropTypes.arrayOf(PropTypes.any)
+};
+
+WorldMap.defaultProps = {
+  setTooltipContent: () => {},
+  covid19DataScale: 0,
+  countriesData: []
+};
 
 export default React.memo(WorldMap);

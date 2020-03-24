@@ -38,4 +38,8 @@ export const Credits = styled.div`
   bottom: 0;
   right: 0;
   margin-right: 16px;
+
+  margin-bottom: 16px;
+
+  font-size: 12px;
 `;
