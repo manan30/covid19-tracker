@@ -4,10 +4,11 @@ import { getAll, getAllCountries } from '../../api';
 import WorldMap from '../../components/Map';
 import Search from '../../components/Search';
 import GlobalStats from '../../components/WorldStats';
+import { useStore } from '../../Store';
 
 function Main() {
+  const { state, dispatch } = useStore();
   const [covid19Data, setCovid19Data] = useState({});
-  const [countriesData, setCountriesData] = useState([]);
   const [tooltipContent, setTooltipContent] = useState({});
 
   useEffect(() => {
@@ -20,18 +21,18 @@ function Main() {
   useEffect(() => {
     (async function getAllCountriesData() {
       const data = await getAllCountries();
-      setCountriesData(() => data);
+      dispatch({ type: 'SET_COUNTRIES', payload: data });
     })();
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
-      <Search initialData={countriesData.map(country => country.country)} />
+      <Search initialData={state.countries.map(country => country.country)} />
       <GlobalStats stats={covid19Data} />
       <WorldMap
         setTooltipContent={setTooltipContent}
         covid19DataScale={covid19Data.cases}
-        countriesData={countriesData}
+        countriesData={state.countries}
       />
       {tooltipContent.length !== 0 && (
         <ReactTooltip>
