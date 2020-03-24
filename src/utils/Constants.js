@@ -54,3 +54,12 @@ export const countriesDataSanitizer = countries => {
   });
   return newData;
 };
+
+export const FuseOptions = {
+  shouldSort: true,
+  threshold: 0.4,
+  location: 0,
+  distance: 50,
+  maxPatternLength: 12,
+  minMatchCharLength: 3
+};

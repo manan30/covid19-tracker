@@ -26,7 +26,7 @@ function Main() {
 
   return (
     <>
-      <Search />
+      <Search initialData={countriesData.map(country => country.country)} />
       <GlobalStats stats={covid19Data} />
       <WorldMap
         setTooltipContent={setTooltipContent}

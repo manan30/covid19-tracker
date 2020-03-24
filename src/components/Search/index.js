@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { FiArrowRight } from 'react-icons/fi';
 import { GoSearch } from 'react-icons/go';
 import { IoMdClose } from 'react-icons/io';
 import styled from 'styled-components';
 import useInputFocus from '../../hooks/useInputFocus';
+import useSearch from '../../hooks/useSearch';
+import { FuseOptions } from '../../utils/Constants';
 
 const SearchInput = styled.input`
   height: 24px;
@@ -46,6 +49,7 @@ const Sidebar = styled.section`
   top: 0;
 
   display: flex;
+  flex-direction: column;
 
   height: calc(100vh - 32px);
   width: 256px;
@@ -53,8 +57,7 @@ const Sidebar = styled.section`
 
   background: #263238;
 
-  overflow: none;
-  overflow-y: scroll;
+  overflow: hidden;
 
   svg {
     height: 24px;
@@ -67,10 +70,54 @@ const Sidebar = styled.section`
   }
 `;
 
+const CountriesListContainer = styled.div`
+  width: 100%;
+  height: calc(100% - 48px);
+  margin-left: 2.5px;
+
+  overflow-y: scroll;
+`;
+
+const TextContainer = styled.div`
+  display: flex;
+  align-items: baseline;
+
+  cursor: pointer;
+`;
+
+const Text = styled.div`
+  margin-top: 12px;
+
+  font-size: 12px;
+  color: white;
+`;
+
+const Icon = styled.div`
+  margin-left: auto;
+  height: 12px;
+  width: 12px;
+
+  color: #ffffff;
+
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+`;
+
 function Search({ initialData }) {
-  const [searchList, setSearchList] = useState(initialData);
   const [showSideBar, setShowSideBar] = useState(false);
+  const [data, setData] = useState(initialData);
+
+  const { results, search, searchTerm } = useSearch({
+    data,
+    options: FuseOptions
+  });
   const { ref } = useInputFocus(showSideBar);
+
+  useEffect(() => {
+    setData(() => initialData);
+  }, [initialData]);
 
   return (
     <>
@@ -80,8 +127,30 @@ function Search({ initialData }) {
         </SearchIcon>
       ) : (
         <Sidebar>
-          <SearchInput ref={ref} placeholder='Search country to view details' />
-          <IoMdClose onClick={() => setShowSideBar(() => false)} />
+          <div style={{ display: 'flex' }}>
+            <SearchInput
+              ref={ref}
+              placeholder='Search country to view details'
+              value={searchTerm}
+              onChange={e => {
+                search(e.target.value);
+              }}
+            />
+            <IoMdClose onClick={() => setShowSideBar(() => false)} />
+          </div>
+          <CountriesListContainer>
+            {results.map((country, i) => {
+              const key = i;
+              return (
+                <TextContainer key={key}>
+                  <Text>{country}</Text>
+                  <Icon>
+                    <FiArrowRight />
+                  </Icon>
+                </TextContainer>
+              );
+            })}
+          </CountriesListContainer>
         </Sidebar>
       )}
     </>
@@ -96,4 +165,4 @@ Search.defaultProps = {
   initialData: []
 };
 
-export default Search;
+export default React.memo(Search);
