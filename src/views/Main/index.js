@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ReactTooltip from 'react-tooltip';
 import { getAll, getAllCountries } from '../../api';
 import WorldMap from '../../components/Map';
+import GlobalStats from '../../components/WorldStats';
 
 function Main() {
   const [covid19Data, setCovid19Data] = useState({});
@@ -24,6 +25,7 @@ function Main() {
 
   return (
     <>
+      <GlobalStats stats={covid19Data} />
       <WorldMap
         setTooltipContent={setTooltipContent}
         covid19DataScale={covid19Data.cases}

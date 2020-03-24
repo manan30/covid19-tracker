@@ -52,6 +52,7 @@ function WorldMap({ setTooltipContent, covid19DataScale, countriesData }) {
                     setTooltipContent('');
                   }}
                   style={{
+                    default: { stroke: '#fff' },
                     hover: {
                       fill: '#F53',
                       outline: 'none'
