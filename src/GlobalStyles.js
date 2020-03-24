@@ -8,6 +8,13 @@ export default createGlobalStyle`
     overflow: hidden
   }
 
+
+  svg {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+
   #root {
     height: 100%;
     width: 100%;
@@ -16,5 +23,11 @@ export default createGlobalStyle`
   .main-map {
     height: 100vh;
     width: 100vw;
+  }
+
+  .rsm-geographies{
+    path {
+      cursor: pointer
+    }
   }
 `;
