@@ -4,6 +4,7 @@ import { FiArrowRight } from 'react-icons/fi';
 import { GoSearch } from 'react-icons/go';
 import { IoMdClose } from 'react-icons/io';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import useInputFocus from '../../hooks/useInputFocus';
 import useSearch from '../../hooks/useSearch';
 import { FuseOptions } from '../../utils/Constants';
@@ -142,12 +143,14 @@ function Search({ initialData }) {
             {results.map((country, i) => {
               const key = i;
               return (
-                <TextContainer key={key}>
-                  <Text>{country}</Text>
-                  <Icon>
-                    <FiArrowRight />
-                  </Icon>
-                </TextContainer>
+                <Link key={key} to={`/${country}`}>
+                  <TextContainer>
+                    <Text>{country}</Text>
+                    <Icon>
+                      <FiArrowRight />
+                    </Icon>
+                  </TextContainer>
+                </Link>
               );
             })}
           </CountriesListContainer>
