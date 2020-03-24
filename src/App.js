@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactTooltip from 'react-tooltip';
 import WorldMap from './components/Map';
+import { Credits } from './GlobalStyles';
 
 function App() {
   const [tooltipContent, setTooltipContent] = useState({});
@@ -18,6 +19,11 @@ function App() {
           {tooltipContent.deaths && <h5>Deaths: {tooltipContent.deaths}</h5>}
         </ReactTooltip>
       )}
+      <Credits>
+        &#x24B8; Manan Joshi. Made with
+        <span style={{ color: 'red' }}> &#x2764; </span>
+        using <a href='https://github.com/NovelCOVID/API'>NovelCOVID API</a>
+      </Credits>
     </div>
   );
 }

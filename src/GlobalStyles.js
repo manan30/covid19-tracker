@@ -1,11 +1,12 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
-  body {
+  html, body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    overflow: hidden
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
   }
 
 
@@ -30,4 +31,11 @@ export default createGlobalStyle`
       cursor: pointer
     }
   }
+`;
+
+export const Credits = styled.div`
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-right: 16px;
 `;
