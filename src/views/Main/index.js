@@ -4,6 +4,7 @@ import { getAll, getAllCountries } from '../../api';
 import WorldMap from '../../components/Map';
 import Search from '../../components/Search';
 import GlobalStats from '../../components/WorldStats';
+import { Credits } from '../../GlobalStyles';
 import { useStore } from '../../Store';
 
 function Main() {
@@ -44,6 +45,12 @@ function Main() {
           {tooltipContent.deaths && <h5>Deaths: {tooltipContent.deaths}</h5>}
         </ReactTooltip>
       )}
+      <Credits>
+        &#x24B8; Manan Joshi. Made with
+        <span style={{ color: 'red' }}> &#x2764; </span>
+        using
+        <a href='https://github.com/NovelCOVID/API'> NovelCOVID API.</a>
+      </Credits>
     </>
   );
 }

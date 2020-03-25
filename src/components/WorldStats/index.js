@@ -16,6 +16,10 @@ const Container = styled.div`
   background: #ffffff;
   box-shadow: 0px 2px 4px #d7d9df;
   border-radius: 16px;
+
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Text = styled.div`
