@@ -28,11 +28,19 @@ function Details() {
         <StatContainer>
           <StatItem>Total Cases: {searchCountry.cases}</StatItem>
           <StatItem>Today Cases: {searchCountry.todayCases}</StatItem>
-          <StatItem>Total Deaths: {searchCountry.deaths}</StatItem>
-          <StatItem>Today Deaths: {searchCountry.todayDeaths}</StatItem>
-          <StatItem>Recovered: {searchCountry.recovered}</StatItem>
+          <StatItem color='#f1173f'>
+            Total Deaths: {searchCountry.deaths}
+          </StatItem>
+          <StatItem color='#f1173f'>
+            Today Deaths: {searchCountry.todayDeaths}
+          </StatItem>
+          <StatItem color='#0087d4'>
+            Recovered: {searchCountry.recovered}
+          </StatItem>
           <StatItem>Active: {searchCountry.active}</StatItem>
-          <StatItem>Critical: {searchCountry.critical}</StatItem>
+          <StatItem color='#f1173f'>
+            Critical: {searchCountry.critical}
+          </StatItem>
         </StatContainer>
         {historicalData.timeline &&
           Object.keys(historicalData.timeline.cases).length > 0 && (
