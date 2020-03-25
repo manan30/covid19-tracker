@@ -4,8 +4,8 @@ import { getAll, getAllCountries } from '../../api';
 import WorldMap from '../../components/Map';
 import Search from '../../components/Search';
 import GlobalStats from '../../components/WorldStats';
-import { Credits } from '../../GlobalStyles';
 import { useStore } from '../../Store';
+import { Credits } from '../../GlobalStyles';
 
 function Main() {
   const { state, dispatch } = useStore();

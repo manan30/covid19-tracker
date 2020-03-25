@@ -23,6 +23,9 @@ const ScreenContainer = styled.div`
 
   overflow: hidden;
   overflow-y: scroll;
+  @media only screen and (max-width: 768px) {
+    height: calc(100vh - 73px);
+  }
 `;
 
 const StatContainer = styled.section`
@@ -53,6 +56,13 @@ const StatItem = styled.div`
 
   font-size: 12px;
   color: ${props => props.color || '#4f5d75'};
+
+  transition: all 0.5s ease-in-out;
+
+  :hover,
+  :focus {
+    transform: scale(1.01);
+  }
 `;
 
 export { Header, ScreenContainer, StatContainer, StatItem };

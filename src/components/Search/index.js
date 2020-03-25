@@ -69,6 +69,10 @@ const Sidebar = styled.section`
 
     cursor: pointer;
   }
+
+  @media only screen and (max-width: 768px) {
+    height: calc(100vh - 48px);
+  }
 `;
 
 const CountriesListContainer = styled.div`
