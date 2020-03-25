@@ -24,17 +24,19 @@ const Container = styled.div`
   @media only screen and (max-width: 768px) {
     position: fixed;
     width: calc(100vw - 32px);
-    height: ${props => (props.height ? '120px' : '15px')};
-    max-height: ${props => (props.height ? '150px' : '15px')};
+    height: ${props => (props.height === 'true' ? '120px' : '10px')};
+    max-height: ${props => (props.height === 'true' ? '150px' : '15px')};
     margin: 0;
     border-radius: 8px;
     transition: ${props =>
-      props.height ? 'all 0.5s ease-in' : 'all 0.5s ease-out'};
+      props.height === 'true' ? 'all 0.5s ease-in' : 'all 0.5s ease-out'};
     overflow: hidden;
   }
 `;
 
 const Text = styled.div`
+  flex-shrink: 0;
+
   margin-bottom: 8px;
 
   font-size: ${props => props.size || '14px'};
@@ -80,9 +82,11 @@ function GlobalStats({ stats }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <Container height={expanded && '120px'}>
-      <div style={{ display: 'flex', alignItems: 'normal' }}>
-        <h3 style={{ margin: 0, marginBottom: '8px' }}>Global Stats</h3>
+    <Container height={expanded ? 'true' : 'false'}>
+      <div style={{ display: 'flex', alignItems: 'normal', flexShrink: 0 }}>
+        <div style={{ margin: 0, marginBottom: '8px', fontSize: '16px' }}>
+          Global Stats
+        </div>
         <Icon>
           {expanded ? (
             <GoChevronDown

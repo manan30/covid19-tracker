@@ -8,7 +8,6 @@ const initialState = {
 };
 
 const reducer = (state, action) => {
-  console.log({ state, action });
   switch (action.type) {
     case 'SET_COUNTRIES':
       return { ...state, countries: action.payload };
