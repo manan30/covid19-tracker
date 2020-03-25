@@ -45,4 +45,14 @@ export const Credits = styled.div`
   margin-bottom: 16px;
 
   font-size: 12px;
+
+  @media only screen and (max-width: 768px) {
+    left: 0;
+    margin: 0;
+    bottom: 150px;
+    transform: rotate(270deg);
+    transform-origin: 0 0;
+
+    font-size: 10px;
+  }
 `;

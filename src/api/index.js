@@ -33,4 +33,13 @@ async function getAllCountries() {
   }
 }
 
-export { getAll, getAllCountries };
+async function getHistoricalDataByCountry(country) {
+  try {
+    const { data } = await axios.get(`${BASE_URL}/historical/${country}`);
+    return data;
+  } catch (e) {
+    return getHistoricalDataByCountry(country);
+  }
+}
+
+export { getAll, getAllCountries, getHistoricalDataByCountry };
