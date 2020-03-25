@@ -15,6 +15,9 @@ export default createGlobalStyle`
     vertical-align: middle;
   }
 
+  a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+  }
 
   #root {
     height: 100%;
@@ -38,4 +41,18 @@ export const Credits = styled.div`
   bottom: 0;
   right: 0;
   margin-right: 16px;
+
+  margin-bottom: 16px;
+
+  font-size: 12px;
+
+  @media only screen and (max-width: 768px) {
+    left: 0;
+    margin: 0;
+    bottom: 150px;
+    transform: rotate(270deg);
+    transform-origin: 0 0;
+
+    font-size: 10px;
+  }
 `;
