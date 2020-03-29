@@ -15,15 +15,17 @@ const sanitizeData = (object = {}) => {
   const { cases, deaths, recovered } = object;
 
   const casesDates = Object.keys(cases);
-  const deathsDates = Object.keys(cases);
-  const recoveredDates = Object.keys(cases);
+  const deathsDates = Object.keys(deaths);
+  const recoveredDates = recovered ? Object.keys(recovered) : [];
 
   return casesDates.reduce((acc, date) => {
     const entry = { date, cases: cases[date] };
     if (deathsDates.includes(date) === -1) entry.deaths = 0;
     else entry.deaths = deaths[date];
-    if (recoveredDates.includes(date) === -1) entry.recovered = 0;
-    else entry.recovered = recovered[date];
+    if (recoveredDates.length > 0) {
+      if (recoveredDates.includes(date) === -1) entry.recovered = 0;
+      else entry.recovered = recovered[date];
+    }
     return [...acc, entry];
   }, []);
 };
