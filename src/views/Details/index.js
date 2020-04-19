@@ -7,12 +7,12 @@ import Chart from '../../components/Chart';
 
 function Details() {
   const {
-    state: { countries }
+    state: { countries },
   } = useStore();
   const { country } = useParams();
   const [historicalData, setHistoricalData] = useState({});
 
-  const searchCountry = countries.find(entry => entry.country === country);
+  const searchCountry = countries.find((entry) => entry.country === country);
 
   useEffect(() => {
     (async function getHistoricalData() {
@@ -49,7 +49,7 @@ function Details() {
                 style={{
                   fontSize: '24px',
                   color: '#4f5d75',
-                  marginLeft: '4px'
+                  marginLeft: '4px',
                 }}>
                 Historical Data
               </div>
