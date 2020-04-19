@@ -10,7 +10,7 @@ function Details() {
     state: { countries },
   } = useStore();
   const { country } = useParams();
-  const [historicalData, setHistoricalData] = useState({});
+  const [historicalData, setHistoricalData] = useState();
 
   const searchCountry = countries.find((entry) => entry.country === country);
 
@@ -42,7 +42,8 @@ function Details() {
             Critical: {searchCountry.critical}
           </StatItem>
         </StatContainer>
-        {historicalData.timeline &&
+        {historicalData &&
+          historicalData.timeline &&
           Object.keys(historicalData.timeline.cases).length > 0 && (
             <>
               <div

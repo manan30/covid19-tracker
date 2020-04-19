@@ -38,7 +38,7 @@ async function getHistoricalDataByCountry(country) {
     const { data } = await axios.get(`${BASE_URL}/historical/${country}`);
     return data;
   } catch (e) {
-    return getHistoricalDataByCountry(country);
+    return undefined;
   }
 }
 
