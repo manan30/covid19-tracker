@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { countriesDataSanitizer } from '../utils/Constants';
 
-const BASE_URL = 'https://corona.lmao.ninja';
+const BASE_URL = 'https://corona.lmao.ninja/v2';
 
 async function getAll() {
   try {
